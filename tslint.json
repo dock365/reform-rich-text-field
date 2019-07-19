@@ -1,0 +1,12 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "@braces/tslint-config"
+    ],
+    "jsRules": {},
+    "rulesDirectory": [],
+    "rules": {
+        "no-any": false,
+        "no-unsafe-any": false
+    }
+}
