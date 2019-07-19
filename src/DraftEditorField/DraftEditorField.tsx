@@ -53,11 +53,13 @@ class DraftEditorField extends React.Component<IFieldRenderProps, IDraftEditorFi
         'textAlign',
         'colorPicker',
         'link',
-        'emoji',
+        // 'emoji',
         'remove',
         'history',
       ],
     };
+
+    const customProps = this.props.customProps || {};
 
     return (
       <div className="draftEditorContainer">
@@ -68,7 +70,7 @@ class DraftEditorField extends React.Component<IFieldRenderProps, IDraftEditorFi
           wrapperClassName="draftEditorWrapperComponent"
           editorClassName="draftEditorComponent"
           toolbar={toolbar}
-          toolbarHidden={this.state.toolbarHidden}
+          toolbarHidden={customProps.alwaysShowToolbar ? false : this.state.toolbarHidden}
           onFocus={this._onFocus}
           onBlur={this._onBlur}
           // toolbarOnFocus
@@ -85,8 +87,9 @@ class DraftEditorField extends React.Component<IFieldRenderProps, IDraftEditorFi
 
   private _onBlur() {
     this.setState({ toolbarHidden: true });
-    if (this.props.onChange)
+    if (this.props.onChange) {
       this.props.onChange(draftToHtml(convertToRaw(this.state.value.getCurrentContent())));
+    }
   }
 
   private _onEditorStateChange(state: EditorState) {
