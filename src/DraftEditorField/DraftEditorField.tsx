@@ -70,10 +70,11 @@ class DraftEditorField extends React.Component<IFieldRenderProps, IDraftEditorFi
           wrapperClassName="draftEditorWrapperComponent"
           editorClassName="draftEditorComponent"
           toolbar={toolbar}
-          toolbarHidden={customProps.alwaysShowToolbar ? false : this.state.toolbarHidden}
+          toolbarHidden={this.props.readOnly || customProps.alwaysShowToolbar ? false : this.state.toolbarHidden}
           onFocus={this._onFocus}
           onBlur={this._onBlur}
           // toolbarOnFocus
+          readOnly={this.props.readOnly}
           onEditorStateChange={this._onEditorStateChange}
         />
 
